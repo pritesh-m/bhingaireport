@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website</title>
+</head>
+<body>
+
+<h1>Hello World</h1>
+
+<form id="form">
+  <input name="name" placeholder="Name"><br>
+  <input name="email" placeholder="Email"><br>
+  <button type="submit">Send</button>
+</form>
+
+<script>
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const data = {
+    name: this.name.value,
+    email: this.email.value
+  };
+
+  fetch("YOUR_WEB_APP_URL", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(() => alert("Success"));
+});
+</script>
+
+</body>
+</html>

@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>My Website</title>
-</head>
-<body>
-
-<h1>Hello World</h1>
-
-<form id="form">
-  <input name="name" placeholder="Name"><br>
-  <input name="email" placeholder="Email"><br>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <form id="myForm">
+  <input type="text" name="name" placeholder="Name" required><br>
+  <input type="email" name="email" placeholder="Email" required><br>
+  <textarea name="message" placeholder="Message"></textarea><br>
   <button type="submit">Send</button>
 </form>
 
 <script>
-document.getElementById("form").addEventListener("submit", function(e){
+document.getElementById("myForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const data = {
+  const formData = {
     name: this.name.value,
-    email: this.email.value
+    email: this.email.value,
+    message: this.message.value
   };
 
-  fetch("YOUR_WEB_APP_URL", {
+  fetch("https://script.google.com/macros/s/AKfycbykrp3v7aWou1xihbvHrEgE9LOO_FPQZS_GUlRCfsVux1ck4I2knz9hXIftHxy4LuWyvA/exec", {
     method: "POST",
-    body: JSON.stringify(data)
+    body: JSON.stringify(formData)
   })
   .then(res => res.json())
-  .then(() => alert("Success"));
+  .then(data => alert("Submitted successfully!"))
+  .catch(err => alert("Error!"));
 });
 </script>
-
-</body>
+    
+  </body>
 </html>
